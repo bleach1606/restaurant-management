@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
+id="WebApp_ID"
+version="3.1">
+
+
+  <servlet>
+    <servlet-name>Login</servlet-name>
+    <servlet-class>controller.ControllerLogin</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Login</servlet-name>
+    <url-pattern>/Login</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>Order</servlet-name>
+    <servlet-class>controller.ControllerOrder</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Order</servlet-name>
+    <url-pattern>/order</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>BookOrderBill</servlet-name>
+    <servlet-class>controller.ComtrollerBookOrderBill</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>BookOrderBill</servlet-name>
+    <url-pattern>/bookorderbill</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>Kitchen</servlet-name>
+    <servlet-class>controller.ControllerKitchen</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Kitchen</servlet-name>
+    <url-pattern>/kitchen</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>RawMaterial</servlet-name>
+    <servlet-class>controller.ControllerRawMaterial</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>RawMaterial</servlet-name>
+    <url-pattern>/rawmaterial</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>Bill</servlet-name>
+    <servlet-class>controller.ControllerBill</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Bill</servlet-name>
+    <url-pattern>/bill</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>add</servlet-name>
+    <servlet-class>bleach.AddServlet</servlet-class>
+  </servlet>
+
+  <servlet>
+    <servlet-name>NewFile</servlet-name>
+    <servlet-class>bleach.NewFileServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>NewFile</servlet-name>
+    <url-pattern>/newfile</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>add</servlet-name>
+    <url-pattern>/add</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>Sq</servlet-name>
+    <servlet-class>bleach.SqServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Sq</servlet-name>
+    <url-pattern>/sq</url-pattern>
+  </servlet-mapping>
+
+
+
+</web-app>
+

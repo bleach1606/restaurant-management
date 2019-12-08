@@ -1,0 +1,214 @@
+body{
+    margin: 0;
+    overflow:hidden;
+}
+.choose-supplier{
+    height: 30%;
+    background: #607D8B;
+    width: 100%;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+}
+.sub{
+    width: 30%;
+
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+.sub2{
+    height: 30%;
+    text-align: center;
+    width: 100%;
+}
+.text{
+    font-size: 20px;
+    font-weight: bold;
+}
+.name-supplier{
+    height: 30px;
+    width: 300px;
+}
+.drop-down{
+    margin-top: 20px;
+}
+.show-content{
+
+    position: absolute;
+    bottom: 0;
+    height: 70%;
+    width: 100%;
+    display: flex;
+}
+.listnguyenlieu{
+    width: 50%;
+    border-right: 1px solid #8BC34A;
+}
+.choosed{
+
+    width: 50%;
+}
+.title{
+    border-bottom: 1px solid #009688;
+    height: 8%;
+    width: 100%;
+    display: flex;
+    background-color: burlywood;
+}
+.title-name{
+    width: 30%;
+    border-right: 1px solid black;
+    text-align: center;
+    line-height: 55px;
+}
+.title-unit{
+    width: 20%;
+    border-right: 1px solid black;
+    text-align: center;
+    line-height: 55px;
+}
+.title-price{
+    width: 20%;
+    border-right: 1px solid black;
+    text-align: center;
+    line-height: 55px;
+}
+.title-des{
+    width: 30%;
+    text-align: center;
+    line-height: 55px;
+}
+.load{
+    margin-top: 20px;
+}
+.noidung{
+    height: 92%;
+    overflow:auto;
+}
+.nguyenlieu{
+    display: flex;
+    height: 50px;
+    border-bottom: 1px solid #9E9E9E;
+}
+.nguyenlieu:hover{
+    background-color: aquamarine;
+}
+.name{
+    width: 30%;
+    border-right: 1px solid black;
+    text-align: center;
+    line-height: 50px;
+}
+.unit{
+    width: 20%;
+    border-right: 1px solid black;
+    text-align: center;
+    line-height: 50px;
+}
+.price{
+    width: 20%;
+    border-right: 1px solid black;
+    text-align: center;
+    line-height: 50px;
+}
+.des{
+    width: 30%;
+    text-align: center;
+    line-height: 50px;
+}
+.title-chon{
+    border-bottom: 1px solid #009688;
+    height: 8%;
+    width: 100%;
+    display: flex;
+    background-color: burlywood;
+    border-top: 1px solid #009688;
+
+    align-items: center;
+    justify-content: center;
+}
+.tongtien{
+    font-weight: bold;
+    margin-left: 20px;
+}
+.content-chon{
+    height: 80%;
+    overflow: auto;
+}
+.button-chon{
+    height: 12%;
+
+}
+.nguyenlieu-choosed{
+    height: 50px;
+    border-bottom: 1px solid #9E9E9E;
+    display: flex;
+    align-items: center;
+}
+.delete-nguyenlieu{
+    background-image: url(../Images/close.svg);
+    background-repeat: no-repeat;
+    width: 20px;
+    height: 20px;
+    background-position: 3px 3px;
+    cursor: pointer;
+    border-radius: 3px;
+    margin-left: 10px;
+}
+.delete-nguyenlieu:hover{
+    background-color: red;
+}
+.ten{
+    width: 36%;
+    padding-left: 20px;
+}
+.donvi{
+    width: 10%;
+    border-bottom: 1px solid #e1e1e1;
+}
+.soluong{
+    width: 88%;
+    text-align: end;
+    border: none;
+    padding-right: 9px;
+    outline: 0;
+    outline-style: none;
+    outline-width: 0;
+}
+.gia{
+    width: 14%;
+    height: 20px;
+    text-align: end;
+    line-height: 20px;
+    border-bottom: 1px solid #e1e1e1;
+    margin-left: 6%;
+    font-size: 18px;
+}
+.tong{
+    width: 18%;
+    height: 20px;
+    text-align: end;
+    line-height: 20px;
+    margin-left: 6%;
+    font-size: 18px;
+}
+.button-chon{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.nhapkho{
+    background-color: #4bac4d;
+    width: 200px;
+    height: 50px;
+    border: none;
+    border-radius: 3px;
+    font-weight: 600;
+    font-size: 18px;
+    color: white;
+    cursor: pointer;
+}
+.nhapkho:hover{
+    background-color: #419543;
+}

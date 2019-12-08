@@ -1,0 +1,785 @@
+body{
+    margin:0;
+    overflow:hidden;
+}
+.common{
+    background-color: red;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    top: 0;
+    left: 0;
+}
+/*Chinh giao dien header*/
+.header{
+    width: 100%;
+    height: 45px;
+    background-color: #0090da;
+    position: absolute;
+    display: flex;
+}
+.header .header-left{
+    height: 100%;
+    display: flex;
+    width: calc(100% - 700px);
+}
+.header .header-right{
+    width: 700px;
+
+    height: 100%;
+    display: flex;
+}
+.header-right-left{
+    width: 50%;
+
+    display: flex;
+}
+.voucher{
+    text-align: center;
+    height: 100%;
+    line-height: 45px;
+    width: 125px;
+    margin-top: 4px;
+    border-radius: 3px;
+    background-color: white;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.text-voucher{
+    font-size: 17px;
+}
+.icon-voucher{
+    background-position: 6px 6px;
+    background-image: url(../Images/close.svg);
+    background-repeat: no-repeat;
+    height: 25px;
+    width: 20px;
+    margin-left: 3px;
+}
+.add-voucher{
+    width: 40px;
+    height: 100%;
+    background-position: 13px 16px;
+    margin-top: 4px;
+    border-radius: 3px;
+    margin-left: 5px;
+    background-image: url(../Images/add.svg);
+    background-repeat: no-repeat;
+    cursor: pointer;
+}
+.add-customer{
+    width: 24px;
+    height: 99%;
+    background-position: 5px 7px;
+    background-image: url(../Images/add.svg);
+    background-repeat: no-repeat;
+    cursor: pointer;
+}
+.add-customer:hover{
+    background-color: #edf6e4;
+}
+
+.add-voucher:hover{
+    background-color: #0077b4;
+}
+.header-right-right{
+    width: 50%;
+    display: flex;
+    justify-content: flex-end;
+}
+.bgGreen{
+    background-image: url("../Images/table-green.png") !important;
+}
+.display-detail-menu{
+    display:block !important;
+}
+.menu{
+    width: 42px;
+    background-image: url("../Images/icon-left-header.png");
+    background-position: 11px 10px;
+    background-repeat: no-repeat;
+}
+.detail-menu{
+    position: absolute;
+    top: 45px;
+    z-index: 1;
+    display: none;
+}
+
+.sub-menu{
+    line-height: 43px;
+    text-align: center;
+    width:220px;
+    height: 43px;
+    background-color:#0081c3;
+    color: white;
+}
+.sub-menu:hover{
+    background-color: #0090da;
+}
+.name-account{
+    width: 50px;
+    background-color: aquamarine;
+}
+.menu:hover{
+    background-color: #0081c3;
+}
+.taps{
+    width: 240px;
+    display: flex;
+    margin-left: 10px;
+}
+.taps .tap{
+    text-align: center;
+    height: 100%;
+    line-height: 45px;
+    width: 50%;
+    margin-top: 4px;
+    border-radius: 3px;
+}
+.tap span{
+    font-size: 14px;
+}
+.tap-table{
+    cursor: pointer;
+}
+.tap-menu{
+    cursor: pointer;
+}
+.tap-menu .text-menu{
+    color: rgba(255,255,255,.6);
+}
+.color{
+    background-color: #ebebeb;
+}
+.hover:hover{
+    background-color: #0077b4;
+}
+
+.search{
+    display: flex;
+    align-items: center;
+    padding-left: 14px;
+    width: calc(100% - 240px);
+}
+.wrap-search{
+    background-color: white;
+    width: calc(100% - 13px);
+    height: 34px;
+    border-radius: 3px;
+    display: flex;
+    align-items: center;
+    padding-left: 5px;
+}
+.icon-search{
+    background-size: 25px 25px;
+    background-image: url(../Images/icon-search.png);
+    background-repeat: no-repeat;
+    height: 25px;
+    width: 25px;
+    margin-right: 5px;
+}
+.input-search input{
+    width: 100%;
+    border: none;
+}
+.input-search{
+    width: calc(100% - 40px);
+}
+.input-search input:focus{
+    outline: 0;
+    outline-style: none;
+    outline-width: 0;
+}
+/*Chinh giao dien content*/
+.content{
+    width: 100%;
+    position: absolute;
+    background-color: #ebebeb;
+    bottom: 0;
+    top: 45px;
+    display: flex;
+}
+.content-left{
+    height: 100%;
+    width: calc(100% - 700px);
+}
+.content-right{
+    height: 100%;
+    width: 700px;
+}
+.content-table{
+    position: relative;
+    height: 100%;
+}
+.button-table{
+    width: 100%;
+    height: 96px;
+
+}
+.button-menu{
+    width: 100%;
+    height: 96px;
+
+}
+.beer{
+    width: 129px !important;
+}
+.cocktail{
+    width: 156px !important;
+}
+.appetizer{
+    width: 111px !important;
+}
+.btnTable{
+    border: 1px solid #dcdcdc;
+    background-color: white;
+    margin-right: 7px;
+    border-radius: 5px;
+    width: 80px;
+    height: 34px;
+    cursor: pointer;
+    outline: 0;
+    outline-style: none;
+    outline-width: 0;
+    margin-bottom: 8px;
+}
+
+.hoverButton:hover{
+    background-color: #0090da;
+    color: #fff;
+}
+.bgButton{
+    background-color: #0090da;
+    color: #fff;
+}
+.list-button{
+    height: 41px;
+
+    padding-left: 12px;
+    padding-top: 15px;
+}
+.table-all{
+    height: 100%;
+
+}
+.table{
+    text-align: -webkit-center;
+    width: 120px;
+    height: 150px;
+    float: left;
+}
+.food{
+    text-align: -webkit-center;
+    width: 140px;
+    height: 165px;
+    float: left;
+    cursor: pointer;
+}
+.food-voucher{
+    width: 100%;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #e1e1e1;
+}
+.delete-food{
+    background-image: url(../Images/close.svg);
+    background-repeat: no-repeat;
+    width: 20px;
+    height: 20px;
+    background-position: 3px 3px;
+    cursor: pointer;
+    border-radius: 3px;
+    margin-left: 10px;
+}
+.name-food{
+    width: 40%;
+    height: 100%;
+    line-height: 60px;
+    padding-left: 20px;
+    font-size: 20px;
+}
+.amount-food{
+    width: 9%;
+    border-bottom: 1px solid #e1e1e1;
+}
+.amount-food input{
+    width: 88%;
+    text-align: end;
+    border: none;
+    padding-right: 9px;
+    outline: 0;
+    outline-style: none;
+    outline-width: 0;
+}
+.food-price{
+    width: 12%;
+    height: 20px;
+    text-align: end;
+    line-height: 20px;
+    border-bottom: 1px solid #e1e1e1;
+    margin-left: 6%;
+    font-size: 18px;
+}
+.total-price-food{
+    width: 18%;
+    height: 20px;
+    text-align: end;
+    line-height: 20px;
+
+    margin-left: 6%;
+    font-size: 18px;
+}
+.food-voucher:hover{
+    background-color: #edf6e4;
+}
+.delete-food:hover{
+    background-color: red;
+}
+.description-table{
+    margin-top: 5px;
+}
+.table-hover:hover{
+    background-color: rgba(255,255,255,.5);
+    box-shadow: 0 1px 2px rgba(0,0,0,.2)
+}
+.table-click{
+    background-color: rgba(255,255,255,.5);
+    box-shadow: 0 1px 2px rgba(0,0,0,.2);
+
+}
+.icon-food{
+    background-image: url(../Images/pizza.jpg);
+    background-repeat: no-repeat;
+    width: 100px;
+    height: 100px;
+    background-size: 100px 100px;
+    margin-top: 7px;
+}
+.description-food{
+    margin-top: 5px;
+    font-size: 15px;
+}
+.price-food{
+    margin-top: 5px;
+    font-size: 20px;
+}
+.icon-table{
+    background-image: url(../Images/table-black.png);
+    background-repeat: no-repeat;
+    width: 70px;
+    height: 70px;
+    background-size: 70px 70px;
+}
+.food-hover:hover{
+    background-color: rgba(255,255,255,.5);
+    box-shadow: 0 1px 2px rgba(0,0,0,.2);
+}
+.table-floor1{
+    height: 100%;
+    background-color: red;
+}
+.table-floor2{
+    height: 100%;
+    background-color: purple;
+}
+.table-vip{
+    height: 100%;
+    background-color: yellow;
+}
+.table-allMenu{
+    height: 100%;
+    margin-top: 8px;
+}
+.table-beer{
+    height: 100%;
+    background-color: red;
+}
+.table-cocktail{
+    height: 100%;
+    background-color: purple;
+}
+.table-appetizer{
+    height: 100%;
+    background-color: yellow;
+}
+.table-soup{
+    height: 100%;
+    background-color: pink;
+}
+.table-tea{
+    height: 100%;
+    background-color: aqua;
+}
+.content-table-footer{
+    bottom: 0;
+    width: 100%;
+    height: 57px;
+    background-color: green;
+    position: absolute;
+}
+.content-table-main{
+
+    height: calc(100% - 96px - 57px);
+}
+.content-menu{
+
+    height: 100%;
+}
+.display{
+    display: none;
+}
+.voucher-common{
+    position: relative;
+    background-color: white;
+    height: 100%;
+}
+.info-voucher{
+    height: 50px;
+    display: flex;
+    align-items: center;
+}
+.info-table{
+    line-height: 50px;
+    width: 100px;
+    margin-left: 10px;
+    height: 100%;
+    text-align: center;
+    color: #0090da;
+}
+.scroll-voucher{
+    overflow: auto;
+    position: absolute;
+    width: 100%;
+    height: calc(100% - 50px - 97px - 60px)
+}
+.payment-voucher{
+    bottom: 97px;
+    height: 60px;
+    border-top: 1px solid #0090da;
+    position: absolute;
+    width: 100%;
+    display: flex;
+}
+.payment-voucher-left{
+    width: 70%
+}
+.payment-voucher-right{
+    width: 30%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+.text-total{
+    margin-right: 115px;
+}
+.total-money{
+    margin-right: 17px;
+}
+.button-voucher{
+    bottom: 0;
+    height: 97px;
+    text-align: center;
+    position: absolute;
+    width: 100%;
+}
+.search-voucher{
+    margin-left: 14px;
+    align-items: center;
+    display: flex;
+    border-bottom: 1px solid #e1e1e1;
+    height: 60%;
+}
+.search-customer input:focus{
+    outline: 0;
+    outline-style: none;
+    outline-width: 0;
+}
+.search-customer input{
+    border: none;
+}
+.icon-amount{
+    background-position: 0 5px;
+    background-size: 20px 20px;
+    background-image: url(../Images/hiclipart.com.png);
+    background-repeat: no-repeat;
+    width: 20px;
+    height: 31px;
+}
+.amount{
+    margin-left: 20px;
+    display: flex;
+    border-bottom: 1px solid #e1e1e1;
+}
+.input-amount{
+    margin-top: 5px;
+}
+.input-amount input{
+    width: 35px;
+    border: none;
+    outline: 0;
+    outline-style: none;
+    outline-width: 0;
+}
+.button-pay{
+    background-color: #4bac4d;
+    width: 305px;
+    height: 64px;
+    border: none;
+    border-radius: 3px;
+    font-weight: 600;
+    font-size: 18px;
+    color: white;
+    cursor: pointer;
+}
+.button-pay:hover{
+    background-color: #419543;
+}
+
+.button-notify{
+    background-color: #f4557e;
+    width: 160px;
+    height: 64px;
+    border: none;
+    border-radius: 3px;
+    cursor: not-allowed;
+    font-weight: 600;
+    font-size: 18px;
+    color: white;
+    opacity: 0.7;
+}
+.payment-content{
+    background-color: black;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    opacity: 0.3;
+    display: none;
+}
+.bill{
+    background: white;
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    width: 918px;
+    display: none;
+}
+
+.title-bill{
+    width: 100%;
+    height: 42px;
+    line-height: 42px;
+    font-weight: bold;
+    font-size: 20px;
+    padding-left: 20px;
+}
+.list-food-bill{
+    position: absolute;
+    top: 42px;
+    left: 0;
+    bottom: 0;
+    width: 500px;
+    border-right: 1px solid #cdc3c3;
+}
+.money-bill{
+    position: absolute;
+    top: 42px;
+    left: 500px;
+    bottom: 0;
+    width: 418px;
+
+}
+.name-table{
+    margin-right: 20px;
+    height: 30px;
+    margin-left: 20px;
+    border-bottom: 1px solid black;
+}
+.sub-food{
+    display: flex;
+    height: 60px;
+    margin-left: 20px;
+    margin-right: 20px;
+    border-bottom: 1px solid #ebebeb;
+}
+.index-food{
+    font-size: large;
+    width: 35px;
+    height: 52px;
+    margin-top: 12px;
+}
+.copy-name-food{
+    width: 180px;
+    height: 52px;
+    margin-top: 12px;
+    font-size: large;
+}
+.copy-amount-food{
+    width: 47px;
+    height: 52px;
+    margin-top: 12px;
+}
+.copy-price-food{
+    text-align: end;
+    width: 88px;
+    height: 52px;
+    margin-top: 12px;
+}
+.copy-total-food{
+    text-align: end;
+    width: 110px;
+    height: 52px;
+    margin-top: 12px;
+}
+.text-amount{
+    width: 20px;
+    height: 21px;
+    border: 1px solid #e1e1e1;
+    text-align: center;
+}
+
+.scroll{
+    height: calc(100% - 28px);
+    overflow: auto;
+}
+
+.mon-main-voucher{
+    display: none;
+}
+.show-payment{
+    display:block;
+}
+.date{
+    margin-right: 20px;
+    height: 30px;
+    margin-left: 20px;
+    border-bottom: 1px solid black;
+}
+.content-payment{
+    margin-left: 20px;
+    margin-right: 20px;
+}
+.tong{
+    display: flex;
+    height: 40px;
+    align-items: center;
+}
+.tong-text{
+    font-size: 18px;
+    width: 50%;
+}
+.tong-number{
+    width: 50%;
+    text-align: end;
+    font-size: 18px;
+}
+.discount{
+    display: flex;
+    height: 40px;
+    align-items: center;
+}
+.discount-text{
+    font-size: 18px;
+    width: 50%;
+
+}
+.discount-number{
+    width: 50%;
+    border-bottom: 1px solid #ebebeb;
+    text-align: end;
+}
+.input-discount{
+    text-align: end;
+    border: none;
+    font-size: 16px;
+    outline: 0;
+    outline-style: none;
+    outline-width: 0;
+}
+.money-need{
+    display: flex;
+    height: 40px;
+    align-items: center;
+}
+.money-need-text{
+    font-size: 18px;
+    width: 50%;
+}
+.money-need-number{
+    width: 50%;
+    text-align: end;
+    font-size: 18px;
+    font-weight: bold;
+    color: #0081c3;
+}
+.customer-pay{
+    display: flex;
+    height: 40px;
+    align-items: center;
+}
+.customer-pay-text{
+    font-size: 18px;
+    width: 50%;
+}
+.customer-pay-number{
+    width: 50%;
+    border-bottom: 1px solid #ebebeb;
+    text-align: end;
+}
+.input-pay{
+    text-align: end;
+    border: none;
+    font-size: 16px;
+    outline: 0;
+    outline-style: none;
+    outline-width: 0;
+}
+.cash{
+    border-top: 1px solid #ebebeb;
+    margin-top: 40px;
+    display: flex;
+    height: 40px;
+    align-items: center;
+}
+.cash-text{
+    font-size: 18px;
+    width: 50%;
+}
+.cash-number{
+    width: 50%;
+    text-align: end;
+    font-size: 18px;
+}
+.button-payment{
+    margin-left: 20px;
+    margin-right: 20px;
+    position: absolute;
+    bottom: 40px;
+}
+.buttonP{
+    border: none;
+    border-radius: 3px;
+    font-weight: 600;
+    font-size: 18px;
+    color: white;
+    background-color: #4bac4d;
+    width: 380px;
+    height: 54px;
+    cursor: pointer;
+}
+.buttonP:hover{
+    background-color: #419543;
+}
+.hide-menu{
+    display: none;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 46px;
+}
