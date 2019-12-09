@@ -9,7 +9,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-//@WebServlet(description = "This is demo", urlPatterns = {"/bleach"})
 public class HelloWorld extends HttpServlet {
 	private static long serialVersionUID = 1L;
 	
