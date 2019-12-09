@@ -44,6 +44,7 @@ public class UploadFileServlet extends HttpServlet {
     }
     public File getFolderUpload() {
         File folderUpload = new File(System.getProperty("user.home") + "/Uploads");
+        System.out.println(folderUpload.toString());
         if (!folderUpload.exists()) {
             folderUpload.mkdirs();
         }
