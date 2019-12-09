@@ -6,10 +6,19 @@ import modul.User;
 import java.util.ArrayList;
 
 public class StockDTO {
+    private String token;
     private User user;
     private ArrayList<NhaCungCap> nhaCungCaps;
 
     public StockDTO() {
+    }
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
     }
 
     public StockDTO(User user, ArrayList<NhaCungCap> nhaCungCaps) {

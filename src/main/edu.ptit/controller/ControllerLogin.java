@@ -4,6 +4,7 @@ import DAO.*;
 import DTO.KitchenDTO;
 import DTO.Reception;
 import DTO.StockDTO;
+import bleach.JwtTokenProvider;
 import modul.*;
 
 import java.io.IOException;
@@ -23,6 +24,7 @@ public class ControllerLogin extends HttpServlet {
 	private FoodDAO foodDAO;
 	private ComboDAO comboDAO;
 	private NCCDAO nccdao;
+	private JwtTokenProvider jwtTokenProvider;
 
 	public ControllerLogin() {
 		// TODO Auto-generated constructor stub
@@ -30,35 +32,39 @@ public class ControllerLogin extends HttpServlet {
 		 foodDAO = new FoodDAO();
 		 comboDAO = new ComboDAO();
 		 nccdao = new NCCDAO();
+		 jwtTokenProvider = new JwtTokenProvider();
 	}
 
-	private void processRequest(HttpServletRequest request, HttpServletResponse response, User user) throws ServletException, IOException {
+	private void processRequest(HttpServletRequest request, HttpServletResponse response, User user, String token) throws ServletException, IOException {
 		ArrayList<Table> list = tableDAO.getListTable("");
 		ArrayList<Food> foods = foodDAO.getAllFood();
 		ArrayList<Combo> combos = comboDAO.getAllCombo();
 		Reception reception = new Reception(user, list, foods, combos);
+		reception.setToken(token);
 		request.setAttribute("reception", reception);
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/process/main.jsp");
 		dispatcher.forward(request, response);
 	}
 
-	private void processRequest1(HttpServletRequest request, HttpServletResponse response, User user) throws ServletException, IOException {
+	private void processRequest1(HttpServletRequest request, HttpServletResponse response, User user, String token) throws ServletException, IOException {
 		KitchenDTO kitchenDTO = new KitchenDTO();
 		kitchenDTO.setUser(user);
 		System.out.println(FoodOrder.StatusFood.DA_GIAO.toString());
 		ArrayList<FoodOrder> usedFoods = foodDAO.listUserFoodForKey(FoodOrder.StatusFood.DA_GIAO.toString());
 		kitchenDTO.setFoodOrders(usedFoods);
 		kitchenDTO.setComboOrders(comboDAO.listUserComboForKey(ComboOrder.StatusCombo.DA_GIAO.toString()));
+		kitchenDTO.setToken(token);
 		request.setAttribute("kitchen", kitchenDTO);
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/process/Kitchen.jsp");
 		dispatcher.forward(request, response);
 	}
 
-	private void processRequest2(HttpServletRequest request, HttpServletResponse response, User user) throws ServletException, IOException {
+	private void processRequest2(HttpServletRequest request, HttpServletResponse response, User user, String token) throws ServletException, IOException {
 		ArrayList<NhaCungCap> nhaCungCaps = nccdao.getALl();
 		StockDTO stockDTO = new StockDTO();
 		stockDTO.setNhaCungCaps(nhaCungCaps);
 		stockDTO.setUser(user);
+		stockDTO.setToken(token);
 		request.setAttribute("stock", stockDTO);
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/process/Stock.jsp");
 		dispatcher.forward(request, response);
@@ -105,12 +111,14 @@ public class ControllerLogin extends HttpServlet {
 			writer.println("</script>");
 		}
 		else {
+			System.out.println(user.toString());
+			String token = jwtTokenProvider.generateToken(user);
 			if (user.getRole().equals("LE_TAN")) {
-				processRequest(req, resp, user);
+				processRequest(req, resp, user, token);
 			} else if (user.getRole().equals("KHO")) {
-				processRequest2(req, resp, user);
+				processRequest2(req, resp, user, token);
 			} else{
-				processRequest1(req, resp, user);
+				processRequest1(req, resp, user, token);
 			}
 		}
 	}

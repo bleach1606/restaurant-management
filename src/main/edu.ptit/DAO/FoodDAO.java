@@ -51,7 +51,7 @@ public class FoodDAO extends DAO{
     }
 
     public ArrayList<FoodOrder> listUserFoodForKey(String key) {
-        String sql = "SELECT * FROM `tblViecChonMon` WHERE tinh_trang <> ?";
+        String sql = "SELECT * FROM `tblviecchonmon` WHERE tinh_trang <> ?";
         ArrayList<FoodOrder> foods = null;
         try{
             foods = new ArrayList<>();

@@ -7,7 +7,7 @@ import modul.User;
 import java.util.ArrayList;
 
 public class KitchenDTO {
-
+    private String token;
     private User user;
     private ArrayList<FoodOrder> foodOrders;
     private ArrayList<ComboOrder> comboOrders;
@@ -19,6 +19,14 @@ public class KitchenDTO {
     }
 
     public KitchenDTO() {
+    }
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
     }
 
     public User getUser() {

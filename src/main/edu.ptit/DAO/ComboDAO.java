@@ -91,11 +91,12 @@ public class ComboDAO extends DAO {
             PreparedStatement ps = connect.prepareStatement(sql);
             ps.setInt(1, id);
             ResultSet rs = ps.executeQuery();
-            System.out.println(sql);
+            System.out.println(ps);
             if(rs.next()) {
                 ban_Order_HoaDon = new Bok_Order_Bill();
                 ban_Order_HoaDon.setId(rs.getInt(1));
             }
+            ps.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -103,7 +104,7 @@ public class ComboDAO extends DAO {
     }
 
     public ArrayList<ComboOrder> listUserComboForKey(String key) {
-        String sql = "SELECT * FROM `tblViecChonMon` WHERE tinh_trang <> ?";
+        String sql = "SELECT * FROM `tblviecchonmon` WHERE tinh_trang <> ?";
         ArrayList<ComboOrder> comboOrders = null;
         try{
             comboOrders = new ArrayList<>();

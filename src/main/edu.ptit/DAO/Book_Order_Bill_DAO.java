@@ -50,10 +50,10 @@ public class Book_Order_Bill_DAO extends DAO {
         Bok_Order_Bill ban_Order_HoaDon = null;
         try {
             PreparedStatement ps = connect.prepareStatement(sql);
-//            ps.setInt(1, ban.getId());
+            System.out.println(ps);
             ResultSet rs = ps.executeQuery();
-            System.out.println(sql);
-            if(rs.next()) {
+
+            while (rs.next()) {
                 ban_Order_HoaDon = new Bok_Order_Bill();
                 ban_Order_HoaDon.setId(rs.getInt(1));
                 ban_Order_HoaDon.setClient(userDAO.getUser(rs.getInt(2)));

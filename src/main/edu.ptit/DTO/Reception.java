@@ -4,10 +4,12 @@ import modul.Combo;
 import modul.Food;
 import modul.Table;
 import modul.User;
+import sun.tools.jstat.Token;
 
 import java.util.ArrayList;
 
 public class Reception {
+    private String token;
     private User user;
     private ArrayList<Table> tables;
     private ArrayList<Food> foods;
@@ -21,6 +23,14 @@ public class Reception {
     }
 
     public Reception() {
+    }
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
     }
 
     public ArrayList<Food> getFoods() {
@@ -58,8 +68,11 @@ public class Reception {
     @Override
     public String toString() {
         return "Reception{" +
-                "user=" + user +
+                "token='" + token + '\'' +
+                ", user=" + user +
                 ", tables=" + tables +
+                ", foods=" + foods +
+                ", combos=" + combos +
                 '}';
     }
 }
