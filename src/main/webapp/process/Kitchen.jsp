@@ -20,6 +20,7 @@
     ArrayList<FoodOrder> foodOrders = new ArrayList<>();
     ArrayList<ComboOrder> comboOrders = new ArrayList<>();
     User user = null;
+    String token = null;
 %>
 
 <%
@@ -28,6 +29,7 @@
         foodOrders = kitchenDTO.getFoodOrders();
         comboOrders = kitchenDTO.getComboOrders();
         user = kitchenDTO.getUser();
+        token = kitchenDTO.getToken();
     }
 %>
 

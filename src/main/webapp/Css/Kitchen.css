@@ -27,7 +27,7 @@ body, html{
     background: white;
     overflow: scroll;
     margin-right: 4px;
-    /*border-right: 2px solid black;*/
+    /* border-right: 2px solid black; */
     float: left;
 }
 .content-left::-webkit-scrollbar{
@@ -107,13 +107,13 @@ body, html{
 }
 
 .content-left-body{
-    width: 99%;
+    width: 100%;
     height: auto;
     /* padding-left: 10px; */
     position: absolute;
     z-index: 1;
     margin-top: 40px;
-    /*    background: beige;*/
+    /* background: beige; */
     /*    border-right: 2px solid black;*/
 }
 .content-right-body{
@@ -126,35 +126,37 @@ body, html{
     margin-top: 40px;
 }
 .item-food{
-    /*    width: 100%;*/
     height: auto;
     background: #f6d4f4cc;
-    border: 1.5px solid aqua;
+    /*border: 1.5px solid aqua;*/
     border-radius: 4px;
     margin-top: 10px;
     margin-bottom: 10px;
     margin-left: 10px;
     display: flex;
     padding-top: 5px;
-    padding-left: 5px;
     padding-bottom: 5px;
     padding-right: 5px;
-    /* padding-left: 5px; */
+    padding-left: 5px;
+    box-shadow: 2px 2px 2px 0px #aeafaf;
+    transition: 0.3s;
 }
 .item-food-name{
-    /* display: inline-block; */
+    display: flex;
     width: 65%;
     /* float: left; */
     /* margin-top: 5px; */
     /* padding-left: 0px; */
-    padding: 6px 0;
+    padding: 7px 0;
     font-size: 1vw;
+    /* align-items: center; */
 }
 .item-food-count{
     display: flex;
     width: 20%;
     padding: 6px 0;
     justify-content: space-evenly;
+    align-items: center;
 }
 .item-food-count p{
     /*display: inline-block;*/
@@ -171,6 +173,10 @@ body, html{
     width: 30%;
     font-size: 1vw;
 }
+
+.item-food button:hover{
+    background-color: #95df1f;
+}
 .item-food-complete{
     display: inline-block;
     width: 20%;
@@ -178,39 +184,45 @@ body, html{
     float: left;
     background: #b0f640;
     border-radius: 50px;
-    border: none;
+    border: 1px solid darkgray;
     font-size: 1vw;
+    align-items: center;
 }
 
 .food{
     /*    width: 100%;*/
     height: auto;
     background: #f0d8edc7;
-    border: 1.5px solid aqua;
+    /* border: 0.5px solid #00ffff; */
     border-radius: 4px;
     margin-top: 10px;
     margin-bottom: 10px;
     margin-left: 10px;
+    margin-right: 10px;
     display: flex;
     padding-top: 5px;
     padding-left: 5px;
     padding-bottom: 5px;
+    box-shadow: 2px 2px 2px 0px #aeafaf;
+    transition: 0.3s;
     /* padding-left: 5px; */
 }
 .food-name{
-    /* display: inline-block; */
+    display: flex;
     width: 65%;
     /* float: left; */
     /* margin-top: 5px; */
     /* padding-left: 0px; */
     padding: 6px 0;
     font-size: 1vw;
+    align-items: center;
 }
 .food-count{
     display: flex;
     width: 20%;
     padding: 6px 0;
     justify-content: space-evenly;
+    align-items: center;
 }
 
 .food-count p{
@@ -260,11 +272,18 @@ body, html{
 }
 .groud-button img{
     /* display: inline-block; */
-    width: 20%;
+    width: 10%;
     /* float: right; */
-    background-color: transparent;
-    /* border-radius: 5px; */
-    /* margin-right: 5px; */
+    background-color: #e6e6e6;
+    border-radius: 4px;
+    padding: 0px 5px;
+    border: 1px solid darkgrey;
+}
+
+.groud-button img:hover{
+
+    background-color: activeborder;
+
 }
 
 .menu{
@@ -277,7 +296,7 @@ body, html{
     right: 0;
 }
 .menu:hover{
-    background-color: #b0f640;
+    background-color: #58c45a;
 }
 .detail-menu{
     position: absolute;

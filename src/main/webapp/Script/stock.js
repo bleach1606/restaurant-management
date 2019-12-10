@@ -207,3 +207,19 @@ function calTotal(){
     var stringTotal=total.toString();
     tong[0].innerHTML=stringTotal;
 }
+
+function NhapKho(){
+    var id=document.getElementsByClassName("id-nguyenlieu");
+    var amount=document.getElementsByClassName("soluong");
+
+    var listNL=[];
+    for (var i = 0; i < id.length; i++) {
+        var Nguyenlieu ={
+            id  : "",
+            amount : ""
+        };
+        Nguyenlieu.id=id[i].innerHTML;
+        Nguyenlieu.amount=amount[i].value.toString();
+        listNL[i]=Nguyenlieu;
+    }
+}

@@ -13,12 +13,20 @@
   <!-- FIXME change it to the project's website -->
   <url>http://www.example.com</url>
 
+
+
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <maven.compiler.source>1.7</maven.compiler.source>
     <maven.compiler.target>1.7</maven.compiler.target>
+
+    <jdkVersion>1.8</jdkVersion>
+
+    <warFile>relative/path/myapp.war</warFile>
+
   </properties>
 <!--adas-->
+
   <dependencies>
 
     <dependency>
@@ -87,28 +95,34 @@
     <pluginManagement><!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
       <plugins>
 
+
+
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-dependency-plugin</artifactId>
-          <version>2.3</version>
+          <version>3.0.1</version>
           <executions>
             <execution>
+              <id>copy-dependencies</id>
               <phase>package</phase>
-              <goals><goal>copy</goal></goals>
-              <configuration>
-                <artifactItems>
-                  <artifactItem>
-                    <groupId>com.github.jsimone</groupId>
-                    <artifactId>webapp-runner</artifactId>
-                    <version>9.0.27.0</version>
-                    <destFileName>webapp-runner.jar</destFileName>
-                  </artifactItem>
-                </artifactItems>
-              </configuration>
+              <goals><goal>copy-dependencies</goal></goals>
             </execution>
           </executions>
         </plugin>
 
+        <plugin>
+          <groupId>com.heroku.sdk</groupId>
+          <artifactId>heroku-maven-plugin</artifactId>
+          <version>2.0.13</version>
+          <configuration>
+
+            <processTypes>
+              <web>java $JAVA_OPTS -cp target/classes:target/dependency/* target.classes.bleach.main</web>
+            </processTypes>
+
+          </configuration>
+
+        </plugin>
 
         <plugin>
           <artifactId>maven-clean-plugin</artifactId>

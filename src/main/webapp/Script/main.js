@@ -360,6 +360,107 @@ function ChooseTable(ok){
     }
     voucher[index].style.display="block";
     calTotal();
+    var token=document.getElementsByClassName("token")[0].innerHTML;
+    // ok r day
+    var url = "http://localhost:8080/order?table_id=" + (index+1).toString() + "&token=" + token;
+    var settings = {
+        "async": true,
+        "crossDomain": true,
+        "url": url.toString(),
+        "method": "GET",
+        "headers": {
+        }
+    }
+
+    $.ajax(settings).done(function (response) {
+        console.log(response);
+        // cần những gì để T lấy ra cho
+        // food
+        for(var i = 0; i < response['foodOrders'].length; i++) {
+            var trangThai = response['foodOrders'][i]['trangThai'];
+            var food = response['foodOrders'][i]['food'];
+            var idf = food['id'];
+            var namef = food['name'];
+            var value = food['value'];
+            var so_luong = response['foodOrders'][i]['soLuong'];
+
+            var row = document.createElement("DIV");
+            var id= document.createElement("DIV");
+            var del = document.createElement("DIV");
+            var name = document.createElement("DIV");
+            var amount = document.createElement("DIV");
+            var price = document.createElement("DIV");
+            var total = document.createElement("DIV");
+            var bold = document.createElement("B");
+            var attr8= document.createAttribute("class");
+            attr8.value = "bold-total";
+            bold.setAttributeNode(attr8);
+            var attr = document.createAttribute("class");
+            attr.value = "food-voucher";
+            row.setAttributeNode(attr);
+            var attr11= document.createAttribute("class");
+            attr11.value = "id";
+            id.setAttributeNode(attr11);
+            var attr12= document.createAttribute("style");
+            attr12.value = "display:none";
+            id.setAttributeNode(attr12);
+            var attr1= document.createAttribute("class");
+            attr1.value = "delete-food";
+            del.setAttributeNode(attr1);
+            var attr9= document.createAttribute("onclick");
+            attr9.value = "RemoveFood(this)";
+            del.setAttributeNode(attr9);
+            var attr2= document.createAttribute("class");
+            attr2.value = "name-food";
+            name.setAttributeNode(attr2);
+            name.innerHTML=namef;
+            var attr3= document.createAttribute("class");
+            attr3.value = "amount-food";
+            amount.setAttributeNode(attr3);
+            var input = document.createElement("INPUT");
+            var attr6= document.createAttribute("value");
+            attr6.value = so_luong;
+            input.setAttributeNode(attr6);
+            amount.appendChild(input);
+            var attr7= document.createAttribute("class");
+            attr7.value = "gia";
+            input.setAttributeNode(attr7);
+            var attr10= document.createAttribute("onfocusout");
+            attr10.value = "UpAmount(this)";
+            input.setAttributeNode(attr10);
+            amount.appendChild(input);
+            var attr4= document.createAttribute("class");
+            attr4.value = "food-price";
+            price.setAttributeNode(attr4);
+            price.innerHTML=value;
+            var attr5= document.createAttribute("class");
+            attr5.value = "total-price-food";
+            total.setAttributeNode(attr5);
+            bold.innerHTML=value;
+            id.innerHTML=idf;
+            total.appendChild(bold);
+            row.appendChild(id);
+            row.appendChild(del);
+            row.appendChild(name);
+            row.appendChild(amount);
+            row.appendChild(price);
+            row.appendChild(total);
+            voucher[index].appendChild(row);
+            calTotal();
+        }
+
+        // combo
+        for(var i = 0; i < response['comboOrders'].length; i++) {
+            var trangThai = response['comboOrders'][i]['trangThai'];
+            var food = response['comboOrders'][i]['food'];
+            var id = food['id'];
+            var name = food['name'];
+            var value = food['value'];
+            var so_luong = response['comboOrders'][i]['soLuong'];
+        }
+    }).fail(function (data) {
+        console.log(data);
+    });
 }
 function ShowMenu(){
     var detailMenu=document.getElementsByClassName("detail-menu");
@@ -368,7 +469,7 @@ function ShowMenu(){
     hideMenu[0].classList.toggle("display-detail-menu");
 }
 function Notify(){
-
+    var token=document.getElementsByClassName("token")[0].innerHTML;
     var voucher=document.getElementsByClassName("info-main-voucher");
     var table= document.getElementsByClassName("icon-table");
     var itable=0;
@@ -379,15 +480,17 @@ function Notify(){
     }
     var listFood = [];
     var listCombo = [];
-    var Food = {
-        id  : "",
-        amount : ""
-    };
+
     var id=voucher[itable].getElementsByClassName("id");
     var name=voucher[itable].getElementsByClassName("name-food");
     var gia=voucher[itable].getElementsByClassName("gia");
     var length=id.length;
     for (var j = 0; j < length; j++) {
+        var Food = {
+            id  : "",
+            amount : ""
+        };
+
         Food.id= id[j].innerHTML;
         Food.amount=gia[j].value.toString();
         if(name[j].innerHTML.indexOf("Combo")>=0){
@@ -396,6 +499,7 @@ function Notify(){
             listFood.push(Food);
         }
     }
+    console.log(JSON.stringify(listFood));
     var idtable=(itable+1).toString();
     var settings = {
         "async": true,
@@ -408,6 +512,7 @@ function Notify(){
             "Postman-Token": "4d21710b-63d8-45f6-bda7-7d1ff089bb90"
         },
         "data": {
+            "token": token,
             "table_id": idtable,
             "number_client": "4",
             "receptionist_id": "1",
@@ -418,7 +523,9 @@ function Notify(){
 
     $.ajax(settings).done(function (response) {
         console.log(response);
-        alert("Gửi thành công !!!")
+        alert("Gửi thành công !!!");
+    }).fail(function(date) {
+        alert(date);
     });
 }
 function Payment(){
@@ -444,6 +551,7 @@ function Payment(){
     MoneyNeed();
 }
 function EndPayment(){
+    var token=document.getElementsByClassName("token")[0].innerHTML;
     var tableicon=document.getElementsByClassName("icon-table");
     var table=document.getElementsByClassName("table");
     var index=0;
@@ -477,7 +585,6 @@ function EndPayment(){
     for (var i = 0; i < l; i++) {
         voucher[itable].removeChild(remove[0]);
     }
-
     var id =document.getElementsByClassName("input-discount");
     var btm =document.getElementsByClassName("bold-total-money");
     var ip =document.getElementsByClassName("input-pay");
@@ -488,7 +595,28 @@ function EndPayment(){
     id[0].value=0;
     ip[0].value=0;
 
+    var settings = {
+        "async": true,
+        "crossDomain": true,
+        "url": "http://localhost:8080/bill",
+        "method": "PUT",
+        "headers": {
+            "Content-Type": "application/x-www-form-urlencoded",
+            "cache-control": "no-cache",
+            "Postman-Token": "4d21710b-63d8-45f6-bda7-7d1ff089bb90"
+        },
+        "data": {
+            "token": token,
+            "table_id": itable.toString(),
+        }
+    };
 
+    $.ajax(settings).done(function (response) {
+        console.log(response);
+        alert("Xác nhận thanh toán thành công !!!");
+    }).fail(function(date) {
+        alert(date);
+    });
 
 }
 function KeyUpDiscount(){
@@ -763,4 +891,13 @@ function HideMenu(){
     var hideMenu=document.getElementsByClassName("hide-menu");
     detailMenu[0].classList.toggle("display-detail-menu");
     hideMenu[0].classList.toggle("display-detail-menu");
+}
+function Load(){
+    var status=document.getElementsByClassName("status-table");
+    var icon=document.getElementsByClassName("icon-table");
+    for (var i = 0; i < status.length; i++) {
+        if(status[i].innerHTML==="BAN_DANG_XU_DUNG"){
+            icon[i].classList.add("bgGreen");
+        }
+    }
 }

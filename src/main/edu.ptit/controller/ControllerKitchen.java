@@ -3,6 +3,7 @@ package controller;
 import DAO.ComboDAO;
 import DAO.FoodDAO;
 import DTO.KitchenDTO;
+import bleach.JwtTokenProvider;
 import com.google.gson.Gson;
 import modul.ComboOrder;
 import modul.FoodOrder;
@@ -56,32 +57,43 @@ public class ControllerKitchen extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         PrintWriter writer = resp.getWriter();
         try {
+            String token = req.getParameter("token");
+            JwtTokenProvider jwtTokenProvider = new JwtTokenProvider();
+            jwtTokenProvider.getUserIdFromJWT(token);
             String type = req.getParameter("type");
             String status = req.getParameter("status");
             System.out.println(type);
             System.out.println(status);
             if(type.equals("combo")) {
-                int used_combo_id = Integer.parseInt(req.getParameter("used_combo_id"));
-                int number_combo = Integer.parseInt(req.getParameter("number_combo"));
+                int used_combo_id = Integer.parseInt(req.getParameter("id"));
+                int number_combo = Integer.parseInt(req.getParameter("number"));
                 ComboOrder comboOrder = comboDAO.getComboOrder(used_combo_id);
                 System.out.println(comboOrder);
+                comboOrder.setTrangThai(ComboOrder.StatusCombo.valueOf(status));
                 if(comboOrder.getSoLuong() > number_combo) {
                     comboOrder.setSoLuong(comboOrder.getSoLuong() - number_combo);
                     comboDAO.updateComboOrder(comboOrder);
                     comboOrder.setSoLuong(number_combo);
-                    comboOrder.setTrangThai(ComboOrder.StatusCombo.valueOf(status));
                     comboDAO.addUsedComboDone(comboOrder);
                 }
+                else {
+                    comboOrder.setSoLuong(number_combo);
+                    comboDAO.updateComboOrder(comboOrder);
+                }
             } else {
-                int used_food_id = Integer.parseInt(req.getParameter("used_food_id"));
-                int number_food = Integer.parseInt(req.getParameter("number_food"));
+                int used_food_id = Integer.parseInt(req.getParameter("id"));
+                int number_food = Integer.parseInt(req.getParameter("number"));
                 FoodOrder foodOrder = foodDAO.getFoodOrder(used_food_id);
+                foodOrder.setTrangThai(FoodOrder.StatusFood.valueOf(status));
                 if(foodOrder.getSoLuong() > number_food) {
                     foodOrder.setSoLuong(foodOrder.getSoLuong() - number_food);
                     foodDAO.updateFoodOrder(foodOrder);
                     foodOrder.setSoLuong(number_food);
-                    foodOrder.setTrangThai(FoodOrder.StatusFood.valueOf(status));
                     foodDAO.addUsedFoodDone(foodOrder);
+                }
+                else {
+                    foodOrder.setSoLuong(number_food);
+                    foodDAO.updateFoodOrder(foodOrder);
                 }
             }
             resp.setStatus(200);

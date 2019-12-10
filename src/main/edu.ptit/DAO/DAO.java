@@ -13,7 +13,9 @@ public class DAO {
     private ResultSet resultSet = null;
 
     final private String host = "118.70.125.195:43306";
+//    final private String host = "localhost";
     final private String user = "root";
+//    final private String passwd = "";
     final private String passwd = "11223344";
     final private String database = "LTM";
 

@@ -12,9 +12,19 @@ function oneclick(id){
         }
     }
     if(isCheck){
-        var food = {id:id.parentNode.parentNode.getElementsByClassName("food-name")[0].textContent,
+        var food = {
+            id:id.parentNode.parentNode.getAttribute("id"),
             name: id.parentNode.parentNode.getElementsByClassName("food-name")[0].textContent,
-            count: 1};
+            type: "",
+            status: "LAM_XONG",
+            count: 1
+        };
+        if(food.name.indexOf("combo") >0){
+            food.type = "combo";
+        }else {
+            food.type = "food";
+        }
+        callApi(food);
         createOne(food);
         var amountWait = id.parentNode.parentNode.getElementsByClassName("food-count")[0].getElementsByTagName("span")[0].textContent;
         if(parseInt(amountWait) - 1 == 0){
@@ -23,6 +33,19 @@ function oneclick(id){
             id.parentNode.parentNode.getElementsByClassName("food-count")[0].getElementsByTagName("span")[0].textContent = parseInt(amountWait) - 1;
         }
     }else{
+        var food = {
+            id:id.parentNode.parentNode.getAttribute("id"),
+            name: id.parentNode.parentNode.getElementsByClassName("food-name")[0].textContent,
+            type: "",
+            status: "LAM_XONG",
+            count: 1
+        };
+        if(food.name.indexOf("combo") >0){
+            food.type = "combo";
+        }else {
+            food.type = "food";
+        }
+        callApi(food);
         var amountWait = id.parentNode.parentNode.getElementsByClassName("food-count")[0].getElementsByTagName("span")[0].textContent;
         if(parseInt(amountWait) - 1 == 0){
             id.parentNode.parentNode.remove();
@@ -32,7 +55,37 @@ function oneclick(id){
         var amountComplete = document.getElementsByClassName("item-food-count")[i].getElementsByTagName("span")[0].textContent;
         document.getElementsByClassName("item-food-count")[i].getElementsByTagName("span")[0].textContent = parseInt(amountComplete) + 1;
     }
+    // type la gi :
+    // 1
 
+
+}
+
+function callApi(food) {
+    var settings = {
+        "async": true,
+        "crossDomain": true,
+        "url": "http://localhost:8080/kitchen",
+        "method": "POST",
+        "headers": {
+            "Content-Type": "application/x-www-form-urlencoded",
+            "cache-control": "no-cache",
+            "Postman-Token": "7d0cf4da-e77c-4d1f-a4e8-3ab47abd7faf"
+        },
+        "data": {
+            "type": food.type.toString(),
+            "id": food.id.toString(),
+            "number": food.count.toString(),
+            "status": food.status.toString(),
+            "token": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIyIiwiaWF0IjoxNTc1ODk4NDkzLCJleHAiOjE1NzY1MDMyOTN9.7vAD7VpZeEbDCVvI2Nop0e0qeiHc4WM7QKiiqWEin5veVWYcvpUgvT7PgAUv5pcfa3PiIyWlttctITdSpyVGdQ"
+        }
+    };
+    $.ajax(settings).done(function (response) {
+        console.log(response);
+        alert("Da " + food.status + " mon !!!");
+    }).fail(function (data) {
+        alert(data['responseText']);
+    });
 }
 
 
@@ -95,12 +148,25 @@ function allclick(id){
         }
     }
     if(isCheck){
-        var food = {id:id.parentNode.parentNode.getElementsByClassName("food-name")[0].textContent,
+        var food = {
+            id:id.parentNode.parentNode.getAttribute("id"),
             name: id.parentNode.parentNode.getElementsByClassName("food-name")[0].textContent,
-            count:id.parentNode.parentNode.getElementsByClassName("food-count")[0].getElementsByTagName("span")[0].textContent};
+            type: "",
+            status: "LAM_XONG",
+            count:id.parentNode.parentNode.getElementsByClassName("food-count")[0].getElementsByTagName("span")[0].textContent
+        };
+        callApi(food);
         createOne(food);
         id.parentNode.parentNode.remove();
     }else{
+        var food = {
+            id:id.parentNode.parentNode.getAttribute("id"),
+            name: id.parentNode.parentNode.getElementsByClassName("food-name")[0].textContent,
+            type: "",
+            status: "LAM_XONG",
+            count:id.parentNode.parentNode.getElementsByClassName("food-count")[0].getElementsByTagName("span")[0].textContent
+        };
+        callApi(food);
         var amountWait = id.parentNode.parentNode.getElementsByClassName("food-count")[0].getElementsByTagName("span")[0].textContent;
         var amountComplete = document.getElementsByClassName("item-food-count")[i].getElementsByTagName("span")[0].textContent;
         document.getElementsByClassName("item-food-count")[i].getElementsByTagName("span")[0].textContent = parseInt(amountComplete) + parseInt(amountWait) ;
@@ -110,8 +176,22 @@ function allclick(id){
 
 
 
-function complete(id){
-    alert(id.parentNode.getAttribute("id"));
+function complete(node){
+    var cfood= {
+        id: node.parentNode.getAttribute("id"),
+        name: node.parentNode.getElementsByClassName("item-food-name")[0].textContent,
+        type: "",
+        status: "DA_GIAO",
+        count: node.parentNode.getElementsByClassName("item-food-count")[0].getElementsByTagName("span")[0].textContent
+    };
+    if (cfood.name.indexOf("combo")>0){
+        cfood.type = "combo";
+    }else {
+        cfood.type = "food";
+    }
+
+    callApi(cfood);
+    node.parentNode.remove();
 }
 
 function loadData(){

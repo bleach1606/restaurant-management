@@ -17,7 +17,7 @@ public class FoodDAO extends DAO{
 
     public Food getById(int id) {
         Food food = null;
-        String sql = "SELECT * from tblban WHERE id = ?";
+        String sql = "SELECT * from tblMonAn WHERE id = ?";
         try{
             food = new Food();
             PreparedStatement ps = connect.prepareStatement(sql);
@@ -128,7 +128,7 @@ public class FoodDAO extends DAO{
 
     public void addUsedFoodDone(FoodOrder foodOrder) {
         String sql = "INSERT INTO `tblViecChonComBo`(`viecdatban_order_hoadon_id`, `combo_id`, `so_luong_combo`, `trang_thai`)" +
-                "VALUES ( "+ String.valueOf(foodOrder.getBok_order_bill()) +", "+ String.valueOf(foodOrder.getFood().getId()) +
+                " VALUES ( "+ String.valueOf(foodOrder.getBok_order_bill()) +", "+ String.valueOf(foodOrder.getFood().getId()) +
                 ", "+ String.valueOf(foodOrder.getSoLuong()) +", '" + foodOrder.getTrangThai() + "')";
         try{
             PreparedStatement ps = connect.prepareStatement(sql);
@@ -163,16 +163,41 @@ public class FoodDAO extends DAO{
     }
 
     public int updateFoodOrder(FoodOrder foodOrder) {
-        String sql = "UPDATE `tblViecChonMon` SET `so_luong_mon_an`= ? WHERE id = ?";
+        String sql = "UPDATE `tblViecChonMon` SET `tinh_trang`= ? WHERE id = ?";
         try{
             PreparedStatement ps = connect.prepareStatement(sql);
-            ps.setInt(1, foodOrder.getSoLuong());
+            ps.setString(1, String.valueOf(foodOrder.getTrangThai()));
             ps.setInt(2, foodOrder.getId());
+            System.out.println(ps.toString());
             return ps.executeUpdate();
         }catch(Exception e){
             e.printStackTrace();
         }
         return -1;
+    }
+
+    public ArrayList<FoodOrder> listFoodForBOB(int id) {
+        String sql = "SELECT * FROM `tblViecChonMon` WHERE  viecdatban_order_hoadon_id  = ?";
+        ArrayList<FoodOrder> comboOrders = null;
+        try{
+            comboOrders = new ArrayList<>();
+            PreparedStatement ps = connect.prepareStatement(sql);
+            ps.setInt(1, id);
+            ResultSet rs = ps.executeQuery();
+            System.out.println(ps.toString());
+            while (rs.next()) {
+                FoodOrder comboOrder = new FoodOrder();
+                comboOrder.setId(rs.getInt(1));
+                comboOrder.setBok_order_bill(getBok_Order_Bill(rs.getInt(2)));
+                comboOrder.setFood(getById(rs.getInt(3)));
+                comboOrder.setSoLuong(rs.getInt(4));
+                comboOrder.setTrangThai(FoodOrder.StatusFood.valueOf(rs.getString(5)));
+                comboOrders.add(comboOrder);
+            }
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        return comboOrders;
     }
 
 }

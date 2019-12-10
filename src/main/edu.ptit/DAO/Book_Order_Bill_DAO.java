@@ -157,7 +157,7 @@ public class Book_Order_Bill_DAO extends DAO {
 
     public Bok_Order_Bill addBooking(Bok_Order_Bill booking) {
         System.out.println(booking.toString());
-        String sql = "INSERT INTO `tblViecDatBan_Order_HoaDon`" +
+        String sql = "INSERT INTO `tblviecdatban_order_hoadon`" +
                 "(`khach_hang_id`, `thanh_vien_id`, `ban_id`, `thoi_gian_dat`, `ghi_chu`, `so_khach`, `tinh_trang`)" +
                 " VALUES (?, ?, ?, ?, ?, ?, ?)";
         try{

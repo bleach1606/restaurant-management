@@ -3,6 +3,7 @@ package controller;
 import DAO.*;
 import DTO.ii;
 import bleach.Convert;
+import bleach.JwtTokenProvider;
 import com.google.gson.Gson;
 import modul.Bok_Order_Bill;
 import modul.Table;
@@ -85,6 +86,10 @@ public class ControllerBill extends HttpServlet {
     protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         PrintWriter writer = resp.getWriter();
         try {
+            String token = req.getParameter("token");
+            System.out.println(token);
+            JwtTokenProvider jwtTokenProvider = new JwtTokenProvider();
+            int id = jwtTokenProvider.getUserIdFromJWT(token);
             int bob_id = Integer.parseInt(req.getParameter("bob_id"));
             int k = bookOrderBillDao.xacNhanThanhToan(bob_id);
             resp.setStatus(200);

@@ -17,7 +17,7 @@
     <title>JSP Page</title>
     <link rel="stylesheet" href="../Css/main.css">
 </head>
-<body>
+<body onload="Load()">
 
 
 <%!
@@ -27,6 +27,7 @@
     ArrayList<Combo> combos = null;
     ArrayList<ii> usedFloos = null;
     ArrayList<ii> usedCombos = null;
+    String token = null;
 %>
 
 <%
@@ -35,6 +36,7 @@
         tables = reception.getTables();
         foods = reception.getFoods();
         combos = reception.getCombos();
+        token = reception.getToken();
     }
 %>
 
@@ -101,6 +103,8 @@
                     <div class="table-all">
                         <% for(int i = 0; i < reception.getTables().size(); i++) { %>
                         <div class="table table-hover" onclick="ChooseTable(this)">
+                            <div class="id-table" style="display: none"><%= tables.get(i).getId()%></div>
+                            <div class="status-table" style="display: none"><%= tables.get(i).getStatus()%></div>
                             <div class="icon-table"></div>
                             <div class="description-table"><%= tables.get(i).getNameTable()%></div>
                         </div>
@@ -138,7 +142,7 @@
                 </div>
                 <div class="content-table-main">
                     <div class="table-allMenu">
-
+                        <div class="token" style="display: none"> <%=token%></div>
                         <% for(int i = 0; i < foods.size(); i++) { %>
                         <div class="food food-hover" onclick="ChooseFood(this)">
                             <div class="id-food" style="display:none"> <%= foods.get(i).getId()%></div>

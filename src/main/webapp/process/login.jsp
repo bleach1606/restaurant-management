@@ -16,7 +16,7 @@
         <form action="/Login" method="post" id="login">
             <div class="label"><span>LOGIN</span></div>
             <span class="text">Tên đăng nhập</span><br><br>
-            <input type="text" name="username" value="admin" ><br><br>
+            <input type="text" name="username" value="" ><br><br>
             <span class="text">Mật khẩu</span><br><br>
             <input type="password" name="password" value="123456"><br><br>
             <div class="wrap-button">

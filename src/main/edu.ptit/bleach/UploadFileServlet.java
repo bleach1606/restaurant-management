@@ -43,7 +43,7 @@ public class UploadFileServlet extends HttpServlet {
         return "";
     }
     public File getFolderUpload() {
-        File folderUpload = new File(System.getProperty("user.home") + "/Uploads");
+        File folderUpload = new File("/Uploads");
         System.out.println(folderUpload.toString());
         if (!folderUpload.exists()) {
             folderUpload.mkdirs();

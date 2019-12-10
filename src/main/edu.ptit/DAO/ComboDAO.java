@@ -104,12 +104,36 @@ public class ComboDAO extends DAO {
     }
 
     public ArrayList<ComboOrder> listUserComboForKey(String key) {
-        String sql = "SELECT * FROM `tblviecchonmon` WHERE tinh_trang <> ?";
+        String sql = "SELECT * FROM `tblViecChonComBo` WHERE trang_thai <> ?";
         ArrayList<ComboOrder> comboOrders = null;
         try{
             comboOrders = new ArrayList<>();
             PreparedStatement ps = connect.prepareStatement(sql);
             ps.setString(1, key);
+            ResultSet rs = ps.executeQuery();
+            System.out.println(ps.toString());
+            while (rs.next()) {
+                ComboOrder comboOrder = new ComboOrder();
+                comboOrder.setId(rs.getInt(1));
+                comboOrder.setBok_order_bill(getBok_Order_Bill(rs.getInt(2)));
+                comboOrder.setCombo(getById(rs.getInt(3)));
+                comboOrder.setSoLuong(rs.getInt(4));
+                comboOrder.setTrangThai(ComboOrder.StatusCombo.valueOf(rs.getString(5)));
+                comboOrders.add(comboOrder);
+            }
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        return comboOrders;
+    }
+
+    public ArrayList<ComboOrder> listComboForBOB(int id) {
+        String sql = "SELECT * FROM `tblViecChonComBo` WHERE  viecdatban_order_hoadon_id = ?";
+        ArrayList<ComboOrder> comboOrders = null;
+        try{
+            comboOrders = new ArrayList<>();
+            PreparedStatement ps = connect.prepareStatement(sql);
+            ps.setInt(1, id);
             ResultSet rs = ps.executeQuery();
             System.out.println(ps.toString());
             while (rs.next()) {
