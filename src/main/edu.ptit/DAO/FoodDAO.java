@@ -7,6 +7,7 @@ import modul.FoodOrder;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.ArrayList;
 
 public class FoodDAO extends DAO{
@@ -30,6 +31,12 @@ public class FoodDAO extends DAO{
                 food.setValue(rs.getInt(3));
                 food.setUnit(rs.getString(4));
 //                food.setDescription(rs.getString(5));
+                food.setAvatar("../Images/pizza.jpg");
+                if(rs.getString(6) != null) {
+                    System.out.println(rs.getString(6));
+                    food.setAvatar(rs.getString(6));
+                }
+
             }
         }catch(Exception e){
             e.printStackTrace();
@@ -127,13 +134,13 @@ public class FoodDAO extends DAO{
     }
 
     public void addUsedFoodDone(FoodOrder foodOrder) {
-        String sql = "INSERT INTO `tblViecChonComBo`(`viecdatban_order_hoadon_id`, `combo_id`, `so_luong_combo`, `trang_thai`)" +
-                " VALUES ( "+ String.valueOf(foodOrder.getBok_order_bill()) +", "+ String.valueOf(foodOrder.getFood().getId()) +
+        String sql = "INSERT INTO `tblViecChonMon`(`viecdatban_order_hoadon_id`, `mon_an_id`, `so_luong_mon_an`, `tinh_trang`)" +
+                " VALUES ( "+ String.valueOf(foodOrder.getBok_order_bill().getId()) +", "+ String.valueOf(foodOrder.getFood().getId()) +
                 ", "+ String.valueOf(foodOrder.getSoLuong()) +", '" + foodOrder.getTrangThai() + "')";
         try{
             PreparedStatement ps = connect.prepareStatement(sql);
-            System.out.println(sql);
-            ps.execute();
+            System.out.println(ps);
+            ps.executeUpdate();
         }catch(Exception e){
             e.printStackTrace();
         }
@@ -154,6 +161,11 @@ public class FoodDAO extends DAO{
                 combo.setValue(rs.getInt(3));
                 combo.setUnit(rs.getString(4));
                 combo.setDescription(rs.getString(5));
+                combo.setAvatar("../Images/pizza.jpg");
+                if(rs.getString(6) != null) {
+                    System.out.println(rs.getString(6));
+                    combo.setAvatar(rs.getString(6));
+                }
                 combos.add(combo);
             }
         }catch(Exception e){
@@ -198,6 +210,31 @@ public class FoodDAO extends DAO{
             e.printStackTrace();
         }
         return comboOrders;
+    }
+
+    public Food addMonAn(Food food) {
+        String sql = "INSERT INTO `tblMonAn`(`ten_mon_an`, `gia`, `don_vi`, `mo_ta`, `avater`) " +
+                " VALUES (?, ?, ?, ?, ?)";
+        try{
+            PreparedStatement ps = connect.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            ps.setString(1, food.getName());
+            ps.setInt(2, food.getValue());
+            ps.setString(3, food.getUnit());
+            ps.setString(4, food.getDescription());
+            ps.setString(5, food.getAvatar());
+            System.out.println(ps.toString());
+            ps.executeUpdate();
+            ResultSet rs = ps.getGeneratedKeys();
+            int k = -1;
+            if (rs.next()) {
+                k = rs.getInt(1);
+            }
+            food.setId(k);
+            return food;
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        return null;
     }
 
 }

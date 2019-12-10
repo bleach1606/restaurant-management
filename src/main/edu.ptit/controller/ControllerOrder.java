@@ -42,7 +42,9 @@ public class ControllerOrder extends HttpServlet {
         try {
             int table_id = Integer.parseInt(req.getParameter("table_id"));
             Table table = tableDAO.getTableById(table_id);
+            System.out.println(table);
             Bok_Order_Bill bokOrderBill = bookOrderBillDao.getBOB_NOT_PAY(table);
+            System.out.println(bokOrderBill.getId());
             ListUserFoodvsCombo result = new ListUserFoodvsCombo();
             result.setComboOrders(comboDAO.listComboForBOB(bokOrderBill.getId()));
             result.setFoodOrders(foodDAO.listFoodForBOB(bokOrderBill.getId()));
@@ -67,6 +69,16 @@ public class ControllerOrder extends HttpServlet {
             JwtTokenProvider jwtTokenProvider = new JwtTokenProvider();
             jwtTokenProvider.getUserIdFromJWT(token);
             String listFood = req.getParameter("listFood");
+            String tmp = "";
+            String ok = "[]{}123456789,";
+            for(int i = 0; i < listFood.length(); i++) {
+                for(int j = 0; j < ok.length(); j++) {
+                    if(listFood.charAt(i) == ok.charAt(j) ) {
+                        tmp = tmp + listFood.charAt(i);
+                    }
+                }
+            }
+            listFood = tmp;
             System.out.println(listFood.toString());
             int table_id = Integer.parseInt(req.getParameter("table_id"));
             int numberCLient = Integer.parseInt(req.getParameter("number_client"));
@@ -95,6 +107,16 @@ public class ControllerOrder extends HttpServlet {
 
             //list combo
             String listCombo = req.getParameter("listCombo");
+            tmp = "";
+            ok = "[]{}123456789,";
+            for(int i = 0; i < listCombo.length(); i++) {
+                for(int j = 0; j < ok.length(); j++) {
+                    if(listCombo.charAt(i) == ok.charAt(j) ) {
+                        tmp = tmp + listCombo.charAt(i);
+                    }
+                }
+            }
+            listCombo = tmp;
             System.out.println(listCombo.toString());
             if(listCombo != null) {
                 convert.setKey(listCombo);

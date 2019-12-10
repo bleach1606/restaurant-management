@@ -80,7 +80,7 @@ public class Book_Order_Bill_DAO extends DAO {
 //            ps.setInt(1, ban.getId());
             ResultSet rs = ps.executeQuery();
             System.out.println(sql);
-            if(rs.next()) {
+            if (rs.next()) {
                 ban_Order_HoaDon = new Bok_Order_Bill();
                 ban_Order_HoaDon.setId(rs.getInt(1));
                 ban_Order_HoaDon.setClient(userDAO.getUser(rs.getInt(2)));

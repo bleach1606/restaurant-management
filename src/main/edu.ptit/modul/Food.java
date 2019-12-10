@@ -6,13 +6,23 @@ public class Food {
     private int value;
     private String unit;
     private String description;
+    private String avatar;
 
-    public Food(int id, String name, int value, String unit, String description) {
+    public String getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
+    }
+
+    public Food(int id, String name, int value, String unit, String description, String avatar) {
         this.id = id;
         this.name = name;
         this.value = value;
         this.unit = unit;
         this.description = description;
+        this.avatar = avatar;
     }
 
     public Food() {

@@ -8,18 +8,20 @@ public class Combo {
     private int value;
     private String unit;
     private String description;
+    private String avatar;
 
     private ArrayList<Food> foods;
 
     public Combo() {
     }
 
-    public Combo(int id, String name, int value, String unit, String description, ArrayList<Food> foods) {
+    public Combo(int id, String name, int value, String unit, String description, String avater, ArrayList<Food> foods) {
         this.id = id;
         this.name = name;
         this.value = value;
         this.unit = unit;
         this.description = description;
+        this.avatar = avater;
         this.foods = foods;
     }
 
@@ -69,6 +71,14 @@ public class Combo {
 
     public void setFoods(ArrayList<Food> foods) {
         this.foods = foods;
+    }
+
+    public String getAvater() {
+        return avatar;
+    }
+
+    public void setAvater(String avater) {
+        this.avatar = avater;
     }
 
     @Override

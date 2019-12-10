@@ -12,11 +12,11 @@ public class DAO {
     private PreparedStatement preparedStatement = null;
     private ResultSet resultSet = null;
 
-    final private String host = "118.70.125.195:43306";
-//    final private String host = "localhost";
+//    final private String host = "118.70.125.195:43306";
+    final private String host = "localhost";
     final private String user = "root";
-//    final private String passwd = "";
-    final private String passwd = "11223344";
+    final private String passwd = "";
+//    final private String passwd = "11223344";
     final private String database = "LTM";
 
     public DAO(Connection connect, Statement statement, PreparedStatement preparedStatement, ResultSet resultSet) {

@@ -29,6 +29,7 @@ public class ComboDAO extends DAO {
                 combo.setValue(rs.getInt(3));
                 combo.setUnit(rs.getString(4));
 //                combo.setDescription(rs.getString(5));
+                combo.setAvater(rs.getString(6));
             }
         }catch(Exception e){
             e.printStackTrace();
@@ -76,6 +77,12 @@ public class ComboDAO extends DAO {
                 combo.setValue(rs.getInt(3));
                 combo.setUnit(rs.getString(4));
                 combo.setDescription(rs.getString(5));
+                combo.setDescription(rs.getString(6));
+                combo.setAvater("../Images/pizza.jpg");
+                if(rs.getString(6) != null) {
+                    System.out.println(rs.getString(6));
+                    combo.setAvater(rs.getString(6));
+                }
                 combos.add(combo);
             }
         }catch(Exception e){
@@ -184,5 +191,30 @@ public class ComboDAO extends DAO {
             e.printStackTrace();
         }
         return -1;
+    }
+
+    public Combo addCombo(Combo combo) {
+        String sql = "INSERT INTO `tblCombo`(`ten_combo`, `gia`, `don_vi`, `mo_ta`, `avater`) " +
+                " VALUES (?, ?, ?, ?, ?)";
+        try{
+            PreparedStatement ps = connect.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            ps.setString(1, combo.getName());
+            ps.setInt(2, combo.getValue());
+            ps.setString(3, combo.getUnit());
+            ps.setString(4, combo.getDescription());
+            ps.setString(5, combo.getAvater());
+            System.out.println(ps.toString());
+            ps.executeUpdate();
+            ResultSet rs = ps.getGeneratedKeys();
+            int k = -1;
+            if (rs.next()) {
+                k = rs.getInt(1);
+            }
+            combo.setId(k);
+            return combo;
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        return null;
     }
 }

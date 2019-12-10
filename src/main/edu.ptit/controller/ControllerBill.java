@@ -1,8 +1,6 @@
 package controller;
 
 import DAO.*;
-import DTO.ii;
-import bleach.Convert;
 import bleach.JwtTokenProvider;
 import com.google.gson.Gson;
 import modul.Bok_Order_Bill;
@@ -15,7 +13,6 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Timestamp;
-import java.util.ArrayList;
 import java.util.Date;
 
 public class ControllerBill extends HttpServlet {
@@ -50,7 +47,7 @@ public class ControllerBill extends HttpServlet {
         } catch (Exception ex) {
             resp.setStatus(404);
             resp.setContentType("text/xml");
-            writer.println(ex.getMessage());
+            writer.println("thanh toan không thành công");
         }
     }
 
@@ -58,6 +55,10 @@ public class ControllerBill extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         PrintWriter writer = resp.getWriter();
         try {
+            String token = req.getParameter("token");
+            System.out.println(token);
+            JwtTokenProvider jwtTokenProvider = new JwtTokenProvider();
+            int id = jwtTokenProvider.getUserIdFromJWT(token);
             int table_id = Integer.parseInt(req.getParameter("table_id"));
             int numberCLient = Integer.parseInt(req.getParameter("number_client"));
             int receptionist_id = Integer.parseInt(req.getParameter("receptionist_id"));

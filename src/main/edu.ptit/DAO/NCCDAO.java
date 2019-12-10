@@ -4,6 +4,7 @@ import modul.NhaCungCap;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.ArrayList;
 
 public class NCCDAO extends DAO{
@@ -17,7 +18,7 @@ public class NCCDAO extends DAO{
         ArrayList<NhaCungCap> nhaCungCaps = null;
         try{
             nhaCungCaps = new ArrayList<>();
-            PreparedStatement ps = connect.prepareStatement(sql);
+            PreparedStatement ps = connect.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             ResultSet rs = ps.executeQuery();
             System.out.println(ps.toString());
             while (rs.next()) {

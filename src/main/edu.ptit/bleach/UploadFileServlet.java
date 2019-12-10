@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 import java.io.File;
 import java.io.IOException;
+import java.io.PrintWriter;
 
 @WebServlet("/UploadFileServlet")
 @MultipartConfig(fileSizeThreshold = 1024 * 1024 * 2, // 2MB
@@ -20,14 +21,16 @@ public class UploadFileServlet extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        PrintWriter writer = response.getWriter();
         for (Part part : request.getParts()) {
             String fileName = extractFileName(part);
             // refines the fileName in case it is an absolute path
             fileName = new File(fileName).getName();
             part.write(this.getFolderUpload().getAbsolutePath() + File.separator + fileName);
+            writer.println("../Images/"+ fileName);
         }
-        request.setAttribute("message", "Upload File Success!");
-        getServletContext().getRequestDispatcher("/result.jsp").forward(request, response);
+
+
     }
     /**
      * Extracts file name from HTTP header content-disposition
@@ -43,8 +46,7 @@ public class UploadFileServlet extends HttpServlet {
         return "";
     }
     public File getFolderUpload() {
-        File folderUpload = new File("/Uploads");
-        System.out.println(folderUpload.toString());
+        File folderUpload = new File(System.getProperty("user.home") + "/Documents/TestArchetype/restaurant-management/src/main/webapp/Images");
         if (!folderUpload.exists()) {
             folderUpload.mkdirs();
         }
